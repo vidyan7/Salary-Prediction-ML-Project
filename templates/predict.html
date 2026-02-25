@@ -1,0 +1,266 @@
+ <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet"/>
+    
+  </head>
+  <body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://kit.fontawesome.com/29c2a44522.js" crossorigin="anonymous"></script>
+
+
+
+    {% if prediction %} 
+    <script>
+    Swal.fire({
+  title: "<strong>Prediction Result</strong>",
+  icon: "info",
+  html: `
+    <p> Your prediction salary is:<strong>${{prediction}}</strong></p>
+    <p>Note:This is an estimated value may vary based on various factor</p>
+  `,
+  showCloseButton: true,
+  showCancelButton: true,
+  focusConfirm: false,
+  confirmButtonText: `
+    <i class="fa fa-thumbs-up"></i> Great!
+  `,
+  confirmButtonAriaLabel: "Thumbs up, great!",
+  cancelButtonText: `
+    <i class="fa fa-thumbs-down"></i>
+  `,
+  cancelButtonAriaLabel: "Thumbs down",
+});
+</script>
+  {% endif%}
+
+
+
+
+
+
+    {# Navbar #}
+    <nav class="navbar navbar-expand-lg bg-nav sticky-top">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand txt-brand" href="#">PaySense</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="#features">Feature</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="#howitworks">How it works</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="#methodology">Methodology</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="/predict">Predict Now</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link txt-brand" aria-current="page" href="#">Contact Us</a>
+        </li>
+      </ul>
+
+        <a class="btn btn-outline-light" type="link" href="/logout">
+        logout</a>
+      
+    </div>
+  </div>
+</nav>
+
+{##prediction#}
+<div class="card" style="border:none; border-radius: 0;">
+  <img src="../static/img/prdct-2.png" class="card-img"  style="height: 400px;" alt="...">
+  <div class="card-img-overlay">
+    <h5 class="card-title"></h5>
+    <p class="card-text" style="color: white; text-align: center;"></p>
+    <p class="card-text"style="color: white; text-align:center;" >
+        <small></small></p>
+  </div>
+</div>
+
+{# prediction form #}
+
+<div class="container mt-5 mb-5" style="max-width: 700px; border: 2px solid rgb(54, 2, 2); 
+border-radius: 10px; padding: 20px;">
+    <h5 style="color: rgb(74, 2, 2); text-align: center;">SALARY PREDICTION</h5>
+
+
+
+<form action="/predict" method="post">
+<div class="form-floating mb-3">
+  <input type="number" class="form-control" id="age" placeholder="enter your age" name="age">
+  <label for="floatingInput">Age</label>
+</div>
+
+<div class="form-floating">
+  <select class="form-select" id="Gender" aria-label="Floating label select example" name="Gender">
+    <option selected>Select your gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+  <label for="floatingSelect"> Your Gender</label>
+</div>
+<br>
+
+
+<div class="form-floating margin-top-3">
+  <select class="form-select" id="Education_Level" aria-label="Floating label select example" 
+  name="Education_Level">
+    <option selected>Select your Education </option>
+    <option value="High School">High School</option>
+    <option value="Bachelor's Degree">Bachelor's Degree</option>
+    <option value="Master's Degree">Master's Degree</option>
+    <option value="PhD">PhD</option>
+
+  </select>
+  <label for="floatingSelect">Education</label>
+</div>
+
+<div class="form-floating mt-3">
+  <input class="form-control" list="jobTitlesOptions" id="Job_Title" name="Job_Title" placeholder="Select Job Title" required>
+  <label for="jobTitle">Job Title</label>
+  <datalist id="jobTitlesOptions">
+    <option value="Software Engineer">
+    <option value="Data Analyst">
+    <option value="Senior Manager">
+    <option value="Sales Associate">
+    <option value="Director">
+    <option value="Marketing Analyst">
+    <option value="Product Manager">
+    <option value="Sales Manager">
+    <option value="Marketing Coordinator">
+    <option value="Senior Scientist">
+    <option value="Software Developer">
+    <option value="HR Manager">
+    <option value="Financial Analyst">
+    <option value="Project Manager">
+    <option value="Customer Service Rep">
+    <option value="Operations Manager">
+    <option value="Marketing Manager">
+    <option value="Senior Engineer">
+    <option value="Data Entry Clerk">
+    <option value="Sales Director">
+    <option value="Business Analyst">
+    <option value="VP of Operations">
+    <option value="IT Support">
+    <option value="Recruiter">
+    <option value="Financial Manager">
+    <option value="Social Media Specialist">
+    <option value="Software Manager">
+    <option value="Junior Developer">
+    <option value="Senior Consultant">
+    <option value="Product Designer">
+    <option value="CEO">
+    <option value="Accountant">
+    <option value="Data Scientist">
+    <option value="Marketing Specialist">
+    <option value="Technical Writer">
+    <option value="HR Generalist">
+    <option value="Project Engineer">
+    <option value="Customer Success Rep">
+    <option value="Sales Executive">
+    <option value="UX Designer">
+    <option value="Operations Director">
+    <option value="Network Engineer">
+    <option value="Administrative Assistant">
+    <option value="Strategy Consultant">
+    <option value="Copywriter">
+    <option value="Account Manager">
+    <option value="Director of Marketing">
+    <option value="Help Desk Analyst">
+    <option value="Customer Service Manager">
+    <option value="Business Intelligence Analyst">
+    <option value="Event Coordinator">
+    <option value="VP of Finance">
+    <option value="Graphic Designer">
+    <option value="UX Researcher">
+    <option value="Social Media Manager">
+    <option value="Director of Operations">
+    <option value="Senior Data Scientist">
+    <option value="Junior Accountant">
+    <option value="Digital Marketing Manager">
+    <option value="IT Manager">
+    <option value="Customer Service Representative">
+    <option value="Business Development Manager">
+    <option value="Senior Financial Analyst">
+    <option value="Web Developer">
+    <option value="Research Director">
+    <option value="Technical Support Specialist">
+    <option value="Creative Director">
+    <option value="Senior Software Engineer">
+    <option value="Human Resources Director">
+    <option value="Content Marketing Manager">
+    <option value="Technical Recruiter">
+    <option value="Sales Representative">
+    <option value="Chief Technology Officer">
+    <option value="Junior Designer">
+    <option value="Financial Advisor">
+    <option value="Junior Account Manager">
+    <option value="Senior Project Manager">
+    <option value="Principal Scientist">
+    <option value="Human Resources Coordinator">
+    <option value="Junior Sales Associate">
+    <option value="Human Resources Manager">
+    <option value="Juniour HR Generalist">
+    <option value="Juniour HR Coordinator">
+    <option value="Digital Marketing Specialist">
+    <option value="Receptionist">
+    <option value="Marketing Director">
+    <option value="Social Media Man">
+    <option value="Delivery Driver">
+  </datalist>
+</div>
+
+
+<div class="form-floating mt-3">
+    <input type="number" class="form-control" id="Years_of_Experience" placeholder="e.g. 5" name="Years_of_Experience" min="0">
+    <label for="experienceYears">Years of Experience</label>
+</div>
+
+<br>
+<div class="d-grid gap-2">
+  <button class="btn"  style="color:white; background-color: rgb(96, 4, 4);" 
+  type="submit">Get Prediction</button>
+  
+</div>
+</div>
+
+
+
+</form>
+
+
+
+
+
+{#footer#}
+  <footer class="bg-nav text-center text-lg-start">
+    <div
+        class="text-center p-3"
+        style="background-color: rgb(86, 7, 7); color:white">
+        2025 SALARY PREDICTION. All Rights reserved.
+    </div>
+</footer>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link  href="../static/css/index.css" rel="stylesheet" type="text/css"/>
+  </body>
+</html>
